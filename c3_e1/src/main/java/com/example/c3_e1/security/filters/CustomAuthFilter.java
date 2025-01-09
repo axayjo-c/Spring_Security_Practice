@@ -32,6 +32,8 @@ public class CustomAuthFilter extends OncePerRequestFilter{
      //Delegate it to Authentication Manager
      //Get the object back.
      //if it is authenticated proceed futhur in the filter chain.
+
+     
     String key = String.valueOf(request.getHeader("key"));
 
     CustomAuthentication customAuthentication = new CustomAuthentication();
@@ -42,7 +44,7 @@ public class CustomAuthFilter extends OncePerRequestFilter{
 
 
        if(a.isAuthenticated()){
-        SecurityContextHolder.getContext().setAuthentication(customAuthentication);
+        SecurityContextHolder.getContext().setAuthentication(customAuthentication);//This is importent because for authorisation this object will be used.
         filterChain.doFilter(request, response);/*This is the proceeding step and
                                                  should execute for successfull authentication.*/
        }
